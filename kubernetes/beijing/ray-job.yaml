@@ -1,0 +1,31 @@
+# Job to run a Ray program in its own pod. Assumes that a cluster is already
+# running (e.g., from './ray-cluster.yaml').
+apiVersion: batch/v1
+kind: Job
+metadata:
+  namespace: ray
+  name: ray-job
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      imagePullSecrets:
+        - name: aliyundocker
+      containers:
+        - name: ray-head
+          image: registry.cn-beijing.aliyuncs.com/angrybirds/deploy:latest
+          command: [ "/bin/bash", "-c", "--" ]
+          args:
+            - "echo hello && /bin/bash -c \"while true; do sleep 1;done\""
+          ports:
+            - containerPort: 12345 # Ray internal communication.
+            - containerPort: 12346 # Ray internal communication.
+          env:
+            - name: MY_POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+          resources:
+            requests:
+              cpu: 2000m
+              memory: 4096Mi

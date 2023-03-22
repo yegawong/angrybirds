@@ -1,0 +1,41 @@
+*.swp
+*.pyc
+*.py~
+.DS_Store
+.cache
+.pytest_cache/
+
+# Setuptools distribution and build folders.
+dist/
+build/
+!/docs/build
+
+# Python egg metadata, regenerated from source files by setuptools.
+*.egg
+*.egg-info
+
+# BH Platform
+Record/
+
+# IDE files
+.vscode/
+.eggs
+.tox
+
+# Windows:
+Thumbs.db
+ehthums.db
+Desktop.ini
+
+#Tmp
+logs/
+
+# Python Other
+*.py[cod]
+*.pkl
+.idea
+*.so
+__pycache__
+
+
+

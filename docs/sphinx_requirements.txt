@@ -1,0 +1,6 @@
+# NB Do not install from this requirements file
+# It is for documentation purposes only
+
+Twisted==19.10.0
+gym
+psutil
